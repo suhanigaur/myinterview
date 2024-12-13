@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interview.AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <div class="container">
+      <h1>Interview.AI</h1>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#contact">Contact</a>
+        <a href="#" id="login-signup-btn">Login/Sign Up</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>Prepare for Your Next Interview</h2>
+    <p>Practice real interview questions and get ready to shine!</p>
+    <a href="category.html">
+      <button class="morphing-btn">Start Interview</button>
+    </a>
+    
+  </section>
+<!-- Features Section -->
+<section class="features" id="features">
+  <h3>Why Use Interview.AI ?</h3>
+  <div class="feature-item">
+    <h4>Real Questions</h4>
+    <p>Access a library of technical, behavioral, and general interview questions curated by experts.</p>
+  </div>
+  <div class="feature-item">
+    <h4>Instant Feedback</h4>
+    <p>Receive immediate feedback on your responses to improve your performance.</p>
+  </div>
+  <div class="feature-item">
+    <h4>Customizable Practice</h4>
+    <p>Choose your interview category to focus on your strengths or work on your weaknesses.</p>
+  </div>
+</section>
+
+<!-- About Section -->
+<section class="about" id="about">
+  <h3>About Interview.AI</h3>
+  <p>
+    Interview.AI is designed to help you prepare for interviews by providing
+    a simulated experience with real questions, instant feedback, and
+    tailored categories. Whether you're prepping for a technical, behavioral,
+    or general interview, we've got you covered.
+  </p>
+</section>
+
+<!-- Contact Section -->
+<section class="contact" id="contact">
+  <h3>Contact Us</h3>
+  <p>Have questions or suggestions? Reach out to us using the form below:</p>
+  <form action="submit_form.php" method="POST">
+    <label for="name">Your Name</label>
+    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+    
+    <label for="email">Your Email</label>
+    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+    
+    <label for="message">Your Message</label>
+    <textarea id="message" name="message" placeholder="Type your message here..." required></textarea>
+    
+    <button type="submit">Submit</button>
+  </form>
+</section>
+
+
+  <!-- Modal for Login/Sign Up -->
+  <div id="modal-container" class="modal-container">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <!-- Login Form -->
+      <div id="login-form">
+        <h2>Login</h2>
+        <form>
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" name="email" placeholder="Enter your email" required>
+
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
+
+          <button type="submit" onclick="login()">Login</button>
+          <p>Don't have an account? <a href="javascript:void(0);" onclick="toggleForms('signup')">Sign Up</a></p>
+        </form>
+      </div>
+      
+      <!-- Signup Form -->
+      <div id="signup-form" style="display:none;">
+        <h2>Sign Up</h2>
+        <form>
+          <label for="signup-username">Username</label>
+          <input type="text" id="signup-username" name="username" placeholder="Enter your username" required>
+
+          <label for="signup-email">Email</label>
+          <input type="email" id="signup-email" name="email" placeholder="Enter your email" required>
+
+          <label for="signup-password">Password</label>
+          <input type="password" id="signup-password" name="password" placeholder="Enter your password" required>
+
+          <label for="signup-confirm-password">Confirm Password</label>
+          <input type="password" id="signup-confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+
+          <button type="submit" onclick="signup()"> <a href="index.html"></a>Sign Up</button>
+          <p>Already have an account? <a href="javascript:void(0);" onclick="toggleForms('login')">Login</a></p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; 2024 Interview.AI. All rights reserved.</p>
+  </footer>
+
+  <script>
+    let modalContainer = document.getElementById('modal-container');
+    let loginForm = document.getElementById('login-form');
+    let signupForm = document.getElementById('signup-form');
+    
+    // Open Modal
+    document.getElementById('login-signup-btn').addEventListener('click', () => {
+      modalContainer.classList.add('active');
+    });
+
+    // Close Modal
+    function closeModal() {
+      modalContainer.classList.remove('active');
+    }
+
+    // Toggle between Login and Signup forms
+    function toggleForms(formType) {
+      if (formType === 'login') {
+        loginForm.style.display = 'block';
+        signupForm.style.display = 'none';
+      } else {
+        loginForm.style.display = 'none';
+        signupForm.style.display = 'block';
+      }
+    }
+
+    // Login functionality
+    function login(event) {
+      event.preventDefault();
+      // Implement login functionality here
+      alert('Logging in...');
+      closeModal();
+    }
+
+    // Signup functionality
+    function signup(event) {
+      event.preventDefault();
+      // Implement signup functionality here
+      alert('Signing up...');
+      closeModal();
+    }
+  </script>
+
+  <style>
+    /* Modal Styles */
+    .modal-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-container.active {
+      display: flex;
+    }
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 300px;
+      position: relative;
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .modal-content form {
+      display: flex;
+      flex-direction: column;
+    }
+    .modal-content label {
+      margin: 10px 0 10px;
+    }
+    .modal-content input {
+      margin-bottom: 15px;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .modal-content button {
+      padding: 10px;
+      background-color: #4b79a1;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .modal-content button:hover {
+      background-color: #4b79a1;
+    }
+    .modal-content p {
+      text-align: center;
+    }
+    .modal-content a {
+      color: #4b79a1;
+      text-decoration: none;
+    }
+  </style>
+</body>
+</html>

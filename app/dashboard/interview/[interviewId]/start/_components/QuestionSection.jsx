@@ -1,5 +1,5 @@
 import { Lightbulb, Volume2 } from "lucide-react";
-import React from "react";
+import React, { useEffect } from "react";
 
 const QuestionSection = ({ mockInterviewQuestion, activeQuestionIndex }) => {
   const textToSpeech = (text) => {
@@ -10,22 +10,30 @@ const QuestionSection = ({ mockInterviewQuestion, activeQuestionIndex }) => {
       alert("Sorry, your browser does not support text to speech.");
     }
   };
+
+  // Automatically speak the question when it becomes visible
+  useEffect(() => {
+    if (mockInterviewQuestion && mockInterviewQuestion[activeQuestionIndex]) {
+      textToSpeech(mockInterviewQuestion[activeQuestionIndex].Question);
+    }
+  }, [mockInterviewQuestion, activeQuestionIndex]);
+
   return (
     mockInterviewQuestion && (
-      <div className=" flex flex-col justify-between p-5 border rounded-lg my-1 bg-secondary">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 ">
-          {mockInterviewQuestion &&
-            mockInterviewQuestion.map((question, index) => (
-              <h2
-                className={`p-2  rounded-full text-center text-xs md:text-sm cursor-pointer md:block hidden ${
-                  activeQuestionIndex == index
-                    ? "bg-black text-white"
-                    : "bg-secondary"
-                }`}
-              >
-                Question #{index + 1}
-              </h2>
-            ))}
+      <div className="flex flex-col justify-between p-5 border rounded-lg my-1 bg-secondary">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+          {mockInterviewQuestion.map((question, index) => (
+            <h2
+              key={index}
+              className={`p-2 rounded-full text-center text-xs md:text-sm cursor-pointer md:block hidden ${
+                activeQuestionIndex === index
+                  ? "bg-black text-white"
+                  : "bg-secondary"
+              }`}
+            >
+              Question #{index + 1}
+            </h2>
+          ))}
         </div>
         <h2 className="my-5 text-md md:text-lg">
           {mockInterviewQuestion[activeQuestionIndex]?.Question}
